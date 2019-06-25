@@ -150,7 +150,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
 
     const removeIndex = post.likes
       .map(like => like.user.toString())
-      .indexOf(req.params.id);
+      .indexOf(req.user.id);
 
     post.likes.splice(removeIndex, 1);
 
@@ -164,7 +164,7 @@ router.put('/unlike/:id', auth, async (req, res) => {
 });
 
 //@route POST api/posts/comment/:id
-//@desc  Comment on a Post
+//@desc  add Comment on a Post
 //@acess Private
 router.post(
   '/comment/:id',
@@ -228,7 +228,7 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
 
     const removeIndex = post.comments
       .map(comment => comment.user.toString())
-      .indexOf(req.params.id);
+      .indexOf(req.user.id);
 
     post.comments.splice(removeIndex, 1);
 
